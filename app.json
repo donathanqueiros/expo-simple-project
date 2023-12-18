@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "expo-simple-project",
+    "slug": "expo-simple-project",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "sdkVersion"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.donathanqueiros.exposimpleproject",
+      "runtimeVersion": "1.0.0"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7e91e80a-3646-4c84-9588-1e38ff1d0611"
+      }
+    },
+    "owner": "donathanqueiros",
+    "updates": {
+      "url": "https://u.expo.dev/7e91e80a-3646-4c84-9588-1e38ff1d0611"
+    }
+  }
+}

@@ -2,13 +2,14 @@ const { ECSClient, RunTaskCommand } = require("@aws-sdk/client-ecs"); // CommonJ
 const { fromEnv, fromIni } = require("@aws-sdk/credential-providers");
 // require('dotenv').config()
 
-async function start() {
-  const client = new ECSClient({
-    region: "us-east-2",
-    credentials: fromIni({
-      filepath: __dirname + "/.aws",
-    }),
-  });
+const client = new ECSClient({
+  region: "us-east-2",
+  credentials: fromIni({
+    filepath: __dirname + "/.aws",
+  }),
+});
+
+function generateBuild(clientName, version) {
   const input = {
     cluster: "arn:aws:ecs:us-east-2:633642797208:cluster/teste",
     count: 1,
@@ -23,27 +24,31 @@ async function start() {
             // EnvironmentVariables
             {
               name: "CLIENT",
-              value: "teste_ext",
+              value: clientName,
             },
             {
               name: "VERSION",
-              value: "1.0.0",
+              value: version,
             },
           ],
         },
       ],
     },
     taskDefinition:
-      "arn:aws:ecs:us-east-2:633642797208:task-definition/task-build-medium:3",
+      "arn:aws:ecs:us-east-2:633642797208:task-definition/task-build-medium:4",
     networkConfiguration: {
       awsvpcConfiguration: {
-        subnets: ["subnet-055d5ca8abf859977", "subnet-039534fb655562318"],
+        subnets: ["subnet-1c566a50"],
+        assignPublicIp: "ENABLED",
       },
     },
   };
   const command = new RunTaskCommand(input);
-  const response = await client.send(command);
-  console.log(response);
+  return client.send(command);
+}
+
+async function start() {
+  generateBuild("build_teste", "1.0.0");
 }
 
 start();
